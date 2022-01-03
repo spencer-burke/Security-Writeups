@@ -1,0 +1,33 @@
+Ok so for this challenge you are given a program called fd.c and told a hint that you have to know what a file descriptor is.
+This basically means understaning file input and output and some c code as well.
+You are given the code:
+"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+char buf[32];
+int main(int argc, char* argv[], char* envp[]) {
+    if(argc<2){
+        printf("pass argv[1] a number ");
+        return 0;
+    }
+    int fd = atoi( argv[1] ) - 0x1234;
+    int len = 0;
+    len = read(fd, buf, 32);
+    if(!strcmp("LETMEWIN\n",buf)){
+        printf("good job :) ");
+        system"/bin/cat flag");
+        exit(0);
+    }
+    printf("learn about Linux file IO\n");
+    return 0;
+}
+"
+The code above will take a file desriptor as an argument.
+The code will then read from that file descriptor after subtracting 4660 from the file descriptor.
+This means the line
+"
+echo "Some text" | ./fd 4661
+"
+Will work. Then adding in "LETMEWIN\n" will next the flag.
+

@@ -1,0 +1,4 @@
+So far, it is overwriting the buffer with the proper variable.
+The offset is 52 characters.
+Then pack the "cafebabe" string in little endian pack it into a script.
+Run the script.

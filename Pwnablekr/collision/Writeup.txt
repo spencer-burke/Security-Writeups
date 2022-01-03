@@ -1,0 +1,15 @@
+For this challenge we are given a basic encryption/hashing algorithm.
+Taking a look at it we see it reads in 20 bytes of information.
+It then hashes them into an int.
+Working through a debugger whith the breakpoint on the add instruction.
+We can see it add groups of 4 with A's, then B's, then C's, and etc.....
+This means Taking 5 groups of 4 bytes can add up to the proper value.
+The number that needs to be added up to does not divide evenly by 5. 
+So divide the number by 4 and get the hex value '0x6c5cec9'.
+Then multiply this number by again and subtract from the value you need to add up to.
+This will net the hex value '0x6c5cec8'.
+Combining 4 of the hex value '0x6c5cec9' and 1 of the '0x6c5cec8' in little endian will get the final string.
+Combining the string into a python one liner will get the answer below.
+
+Answer:
+./col "`python -c "print('\xc9\xce\xc5\x06\xc9\xce\xc5\x06\xc9\xce\xc5\x06\xc9\xce\xc5\x06\xc8\xce\xc5\x06')"`"
