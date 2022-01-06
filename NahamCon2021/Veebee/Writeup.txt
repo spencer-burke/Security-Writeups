@@ -1,0 +1,4 @@
+flag: flag{f805593d933f5433f2a04f082f400d8c}
+Description:
+Ok so for this challenge you get a .vbe file which is a script that is encoded in the weird vbe format.
+Just going and running John Hammond's decode vbe script will spit out the flag.

@@ -1,0 +1,6 @@
+flag: flag{137288e960a3ae9b148e8a7db16a69b0}
+description:
+For this challenge you are given a picture of some shoelaces.
+To start I decided to look at the shoelaces and make sure there wasn't a flag in there.
+Then I did ran strings and grepped for the flag.
+This worked fine.
