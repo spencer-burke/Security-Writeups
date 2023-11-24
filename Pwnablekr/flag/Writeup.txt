@@ -1,1 +1,5 @@
-This is the writeup file for when I finish the challenge
+This challenge is a very basic reverse engineering challenge with a small twist.
+It was packed with upx.
+After you unpack it, you can get the flag really quickly.
+Flag:
+UPX...? sounds like a delivery service :)
